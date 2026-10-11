@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie - Food Delivery</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fffaf5;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        header {
+            background-color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px #ddd;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff5722;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ff5722;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 70px 8%;
+            background-color: #fff0e5;
+            gap: 30px;
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #ff5722;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .hero img {
+            width: 45%;
+            max-width: 450px;
+            border-radius: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #ff5722;
+            color: white;
+            padding: 14px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #e64a19;
+        }
+
+        /* Search Bar */
+        .search {
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        .search input {
+            width: 60%;
+            max-width: 450px;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        /* Food Section */
+        .food-section {
+            padding: 30px 8% 60px;
+            text-align: center;
+        }
+
+        .food-section h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .food-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 15px #e8e0da;
+            transition: transform 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .food-card h3 {
+            margin: 15px 0 8px;
+            font-size: 21px;
+        }
+
+        .food-card p {
+            color: #777;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            color: #ff5722;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #252525;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero img {
+                width: 100%;
+            }
+
+            .search input {
+                width: 90%;
+            }
+
+            .food-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .food-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <div class="logo">🍔 Foodie</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+
+        <div class="hero-text">
+            <h1>Delicious Food, <span>Delivered Fast!</span></h1>
+
+            <p>
+                Discover your favourite meals and get them delivered
+                fresh to your doorstep. Good food makes every moment special!
+            </p>
+
+            <a href="#menu" class="btn">Explore Menu</a>
+        </div>
+
+        <img
+            src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800"
+            alt="Delicious pizza">
+    </section>
+
+    <!-- Search Section -->
+    <section class="search">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for your favourite food..."
+            oninput="searchFood()">
+    </section>
+
+    <!-- Food Menu -->
+    <section class="food-section" id="menu">
+
+        <h2>Our Popular Dishes 🍽️</h2>
+
+        <div class="food-container" id="foodContainer">
+
+            <!-- Food Card 1 -->
+            <div class="food-card">
+                <img
+                    src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500"
+                    alt="Pizza">
+
+                <h3>Cheese Pizza</h3>
+                <p>Delicious cheesy pizza with fresh toppings.</p>
+                <div class="price">₹199</div>
+                <button class="btn" onclick="orderFood('Cheese Pizza')">
+                    Order Now
+                </button>
+            </div>
+
+            <!-- Food Card 2 -->
+            <div class="food-card">
+                <img
+                    src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500"
+                    alt="Burger">
+
+                <h3>Classic Burger</h3>
+                <p>Juicy burger with fresh vegetables and cheese.</p>
+                <div class="price">₹149</div>
+                <button class="btn" onclick="orderFood('Classic Burger')">
+                    Order Now
+                </button>
+            </div>
+
+            <!-- Food Card 3 -->
+            <div class="food-card">
+                <img
+                    src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500"
+                    alt="Grilled food">
+
+                <h3>Grilled Special</h3>
+                <p>Freshly grilled food with delicious spices.</p>
+                <div class="price">₹249</div>
+                <button class="btn" onclick="orderFood('Grilled Special')">
+                    Order Now
+                </button>
+            </div>
+
+            <!-- Food Card 4 -->
+            <div class="food-card">
+                <img
+                    src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500"
+                    alt="Noodles">
+
+                <h3>Spicy Noodles</h3>
+                <p>Hot and tasty noodles packed with flavour.</p>
+                <div class="price">₹129</div>
+                <button class="btn" onclick="orderFood('Spicy Noodles')">
+                    Order Now
+                </button>
+            </div>
+
+            <!-- Food Card 5 -->
+            <div class="food-card">
+                <img
+                    src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500"
+                    alt="Margherita pizza">
+
+                <h3>Margherita Pizza</h3>
+                <p>Classic pizza topped with cheese and tomato.</p>
+                <div class="price">₹179</div>
+                <button class="btn" onclick="orderFood('Margherita Pizza')">
+                    Order Now
+                </button>
+            </div>
+
+            <!-- Food Card 6 -->
+            <div class="food-card">
+                <img
+                    src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500"
+                    alt="Fresh salad">
+
+                <h3>Fresh Salad</h3>
+                <p>A healthy mix of fresh vegetables.</p>
+                <div class="price">₹99</div>
+                <button class="btn" onclick="orderFood('Fresh Salad')">
+                    Order Now
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="food-section" id="about">
+        <h2>About Foodie ❤️</h2>
+        <p>
+            We bring delicious meals to your doorstep with love,
+            quality ingredients, and great taste.
+        </p>
+    </section>
+
+    <!-- Contact Section -->
+    <footer id="contact">
+        <h3>Foodie - Your Favourite Food Partner</h3>
+        <p>Contact us: foodie@example.com</p>
+        <p>&copy; 2026 Foodie. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function orderFood(foodName) {
+            alert("You selected " + foodName + "! Thank you for choosing Foodie.");
+        }
+
+        function searchFood() {
+            let input = document.getElementById("searchInput")
+                .value.toLowerCase();
+
+            let cards = document.querySelectorAll(".food-card");
+
+            cards.forEach(function(card) {
+                let foodName = card.querySelector("h3")
+                    .textContent.toLowerCase();
+
+                if (foodName.includes(input)) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
